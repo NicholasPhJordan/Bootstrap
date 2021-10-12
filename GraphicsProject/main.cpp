@@ -1,10 +1,12 @@
 #include "Engine.h"
 #include "TestWorld.h"
+#include "DragonWorld.h"
 
 int main() {
-	Engine* engine = new Engine(1280, 720, "Graphics");
+	Engine* engine = new Engine(1280, 720, "DragonWorld");
 
-	TestWorld* world = new TestWorld();
+	//TestWorld* world = new TestWorld();
+	DragonWorld* world = new DragonWorld();
 
 	engine->setActiveWorld(world);
 

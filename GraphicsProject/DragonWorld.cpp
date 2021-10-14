@@ -12,12 +12,18 @@ void DragonWorld::onStart()
 	// Light
 	m_light = new Light
 	(
-		{ 1.0f, 1.0f, 1.0f },
+		{ 1.0f, -1.0f, 1.0f },
 		{ 0.5f, 0.5f, 0.5f, 1.0f },
 		{ 1.0f, 1.0f, 1.0f, 1.0f },
 		{ 1.0f, 1.0f, 1.0f, 1.0f }
 	);
 	add(m_light);
+
+	// Quad
+	m_quad = new Quad();
+	m_quad->setColor(glm::vec4(0.6f, 0.0f, 0.2f, 1.0f));
+	m_quad->getTransform()->scale(glm::vec3(10.0f));
+	add(m_quad);
 
 	// Dragon
 	m_dragon = new OBJMesh();

@@ -3,7 +3,6 @@
 #include "PlayerCamera.h"
 #include "Light.h"
 #include "OBJMesh.h"
-#include "Cube.h"
 #include "Quad.h"
 
 class DragonWorld : public World

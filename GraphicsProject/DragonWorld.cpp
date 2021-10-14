@@ -5,7 +5,7 @@ void DragonWorld::onStart()
 	// Camera
 	m_camera = new PlayerCamera(45.0f, 0.001f, 1000.0f);
 	m_camera->getTransform()->setPosition(5.0f, 5.0f, 5.0f);
-	m_camera->getTransform()->rotate(-40.0f, -135.0f, 0.0f);
+	m_camera->getTransform()->rotate(-35.0f, -135.0f, 0.0f);
 	setCamera(m_camera);
 	add(m_camera);
 

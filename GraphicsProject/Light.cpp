@@ -1,12 +1,27 @@
 #include "Light.h"
 #include "gl_core_4_4.h"
 
-Light::Light(glm::vec3 direction, glm::vec4 ambient, glm::vec4 diffuse, glm::vec4 specular)
+Light::Light(glm::vec3 direction, glm::vec4 ambient, glm::vec4 diffuse, glm::vec4 specular, int count)
 {
-	setDirection(direction);
-	m_ambient = ambient;
-	m_diffuse = diffuse;
-	m_specular = specular;
+	if (m_count == 0)
+	{
+		setDirection(direction);
+		m_ambient = ambient;
+		m_diffuse = diffuse;
+		m_specular = specular;
+	}
+	else if (m_count == 1)
+	{
+		setDirection(direction);
+		m_ambient1 = ambient;
+		m_diffuse1 = diffuse;
+		m_specular1 = specular;
+	}
+	else
+	{
+		printf("Count exceeds light limit!\n");
+	}
+	m_count = count;
 }
 
 void Light::onDraw()
@@ -50,13 +65,13 @@ void Light::onDraw()
 		glUniform3f(lightDirection1, direction.x, direction.y, direction.z);
 	}
 	if (lightAmbient1 >= 0) {
-		glUniform3f(lightAmbient1, m_ambient.x, m_ambient.y, m_ambient.z);
+		glUniform3f(lightAmbient1, m_ambient1.x, m_ambient1.y, m_ambient1.z);
 	}
 	if (lightDiffuse1 >= 0) {
-		glUniform3f(lightDiffuse1, m_diffuse.x, m_diffuse.y, m_diffuse.z);
+		glUniform3f(lightDiffuse1, m_diffuse1.x, m_diffuse1.y, m_diffuse1.z);
 	}
 	if (lightSpecular1 >= 0) {
-		glUniform3f(lightSpecular1, m_specular.x, m_specular.y, m_specular.z);
+		glUniform3f(lightSpecular1, m_specular1.x, m_specular1.y, m_specular1.z);
 	}
 }
 
@@ -68,4 +83,76 @@ glm::vec3 Light::getDirection()
 void Light::setDirection(glm::vec3 direction)
 {
 	getTransform()->setForward(direction);
+}
+
+glm::vec4 Light::getAmbient(int count)
+{
+	if (count == 0)
+	{
+		return m_ambient;
+	}
+	else if (count == 1)
+	{
+		return m_ambient1;
+	}
+}
+
+void Light::setAmbient(glm::vec4 ambient, int count)
+{
+	if (count == 0)
+	{
+		m_ambient = ambient;
+	}
+	else if (count == 1)
+	{
+		m_ambient1 = ambient;
+	}
+}
+
+glm::vec4 Light::getDiffuse(int count)
+{
+	if (count == 0)
+	{
+		return m_diffuse;
+	}
+	else if (count == 1)
+	{
+		return m_diffuse1;
+	}
+}
+
+void Light::setDiffuse(glm::vec4 diffuse, int count)
+{
+	if (count == 0)
+	{
+		m_diffuse = diffuse;
+	}
+	else if (count == 1)
+	{
+		m_diffuse1 = diffuse;
+	}
+}
+
+glm::vec4 Light::getSpecular(int count)
+{
+	if (count == 0)
+	{
+		return m_specular;
+	}
+	else if (count == 1)
+	{
+		return m_specular1;
+	}
+}
+
+void Light::setSpecular(glm::vec4 specular, int count)
+{
+	if (count == 0)
+	{
+		m_specular = specular;
+	}
+	else if (count == 1)
+	{
+		m_specular1 = specular;
+	}
 }

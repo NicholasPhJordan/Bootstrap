@@ -9,14 +9,26 @@ void DragonWorld::onStart()
 	setCamera(m_camera);
 	add(m_camera);
 
-	// Light
+	// Light0
 	m_light = new Light
 	(
-		{ 1.0f, -1.0f, 1.0f },
-		{ 0.5f, 0.5f, 0.5f, 1.0f },
+		{ 3.0f, -1.0f, 0.0f },
+		{ 0.4f, 0.2f, 0.2f, 1.0f },
 		{ 1.0f, 1.0f, 1.0f, 1.0f },
-		{ 1.0f, 1.0f, 1.0f, 1.0f }
+		{ 1.0f, 1.0f, 1.0f, 1.0f },
+		0
 	);
+
+	// Light1 
+	m_light1 = new Light
+	(
+		{ -3.0f, -1.0f, 0.0f },
+		{ 0.2f, 0.2f, 0.4f, 1.0f },
+		{ 1.0f, 1.0f, 1.0f, 1.0f },
+		{ 1.0f, 1.0f, 1.0f, 1.0f },
+		1
+	);
+	add(m_light1);
 	add(m_light);
 
 	// Quad
@@ -37,6 +49,7 @@ void DragonWorld::onEnd()
 {
 	destroy(m_camera);
 	destroy(m_light);
+	destroy(m_light1);
 	destroy(m_dragon);
 	destroy(m_cube);
 }

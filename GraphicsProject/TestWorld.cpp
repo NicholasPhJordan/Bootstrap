@@ -13,9 +13,9 @@ void TestWorld::onStart()
 	//Light
 	m_light = new Light();
 	m_light->setDirection(glm::vec3(1.0f, 0.0f, -1.0f));
-	m_light->setAmbient(glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
-	m_light->setDiffuse(glm::vec4(0.6f, 0.6f, 1.0f, 1.0f));
-	m_light->setSpecular(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	m_light->setAmbient(glm::vec4(0.2f, 0.2f, 0.2f, 1.0f), 0);
+	m_light->setDiffuse(glm::vec4(0.6f, 0.6f, 1.0f, 1.0f), 0);
+	m_light->setSpecular(glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0);
 	add(m_light);
 
 	//Quad

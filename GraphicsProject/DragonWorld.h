@@ -4,6 +4,7 @@
 #include "Light.h"
 #include "OBJMesh.h"
 #include "Quad.h"
+#include "Cube.h"
 
 class DragonWorld : public World
 {

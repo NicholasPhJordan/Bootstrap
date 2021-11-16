@@ -19,10 +19,11 @@ void Light::onDraw()
 		return;
 	}
 
-	int lightDirection = glGetUniformLocation(program, "iDirection");
-	int lightAmbient = glGetUniformLocation(program, "iAmbient");
-	int lightDiffuse = glGetUniformLocation(program, "iDiffuse");
-	int lightSpecular = glGetUniformLocation(program, "iSpecular");
+	// Light0
+	int lightDirection = glGetUniformLocation(program, "iDirection0");
+	int lightAmbient = glGetUniformLocation(program, "iAmbient0");
+	int lightDiffuse = glGetUniformLocation(program, "iDiffuse0");
+	int lightSpecular = glGetUniformLocation(program, "iSpecular0");
 
 	if (lightDirection >= 0) {
 		glm::vec3 direction = getDirection();
@@ -36,6 +37,26 @@ void Light::onDraw()
 	}
 	if (lightSpecular >= 0) {
 		glUniform3f(lightSpecular, m_specular.x, m_specular.y, m_specular.z);
+	}
+
+	// Light1
+	int lightDirection1 = glGetUniformLocation(program, "iDirection1");
+	int lightAmbient1 = glGetUniformLocation(program, "iAmbient1");
+	int lightDiffuse1 = glGetUniformLocation(program, "iDiffuse1");
+	int lightSpecular1 = glGetUniformLocation(program, "iSpecular1");
+
+	if (lightDirection1 >= 0) {
+		glm::vec3 direction = getDirection();
+		glUniform3f(lightDirection1, direction.x, direction.y, direction.z);
+	}
+	if (lightAmbient1 >= 0) {
+		glUniform3f(lightAmbient1, m_ambient.x, m_ambient.y, m_ambient.z);
+	}
+	if (lightDiffuse1 >= 0) {
+		glUniform3f(lightDiffuse1, m_diffuse.x, m_diffuse.y, m_diffuse.z);
+	}
+	if (lightSpecular1 >= 0) {
+		glUniform3f(lightSpecular1, m_specular.x, m_specular.y, m_specular.z);
 	}
 }
 

@@ -1,3 +1,30 @@
+# Graphics Project
+
+This is a basic graphics engine that renders in a dragon statue that rest on top of a map of the world. 
+You, as the Player, have complete controll of the camera to explore the scene as you wish. 
+
+## How to play
+
+Either [click here](https://github.com/NicholasPhJordan/Bootstrap/releases/tag/v0.1) or go to *Releases*. Next, download *Bootstrap.zip* from the latest release. Then, unzip the folder and double click *GraphicsProject.exe*. Finally, enjoy!
+
+### Controls
+
+W - Forward
+
+A - Left
+
+S - Backward
+
+D - Right
+
+Q - Down
+
+E - Up
+
+LeftShift - Sprint
+
+---
+
 # aieBootstrap
 
 *NOTE: This project is no longer being actively maintained*

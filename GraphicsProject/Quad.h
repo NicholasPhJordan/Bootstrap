@@ -1,5 +1,6 @@
 #pragma once
 #include "Mesh.h"
+#include "Texture.h"
 
 class Quad : public Mesh
 {
@@ -15,5 +16,6 @@ public:
 
 private:
 	glm::vec4 m_color = glm::vec4(1.0f);
+	aie::Texture m_texture;
 };
 

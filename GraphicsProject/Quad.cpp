@@ -3,6 +3,7 @@
 Quad::Quad(glm::vec4 color) : Quad::Quad()
 {
 	m_color = color;
+	m_texture.load("earth_diffuse.jpg");
 }
 
 Quad::Vertex* Quad::generateVertices(unsigned int& vertexCount)
@@ -22,6 +23,12 @@ Quad::Vertex* Quad::generateVertices(unsigned int& vertexCount)
 		vertices[i].normal = { 0.0f, 0.0f, 0.0f, 0.0f };
 		vertices[i].color = m_color;
 	}
+
+
+	vertices[0].texCoord = { 0.0f, 1.0f };
+	vertices[1].texCoord = { 1.0f, 1.0f };
+	vertices[2].texCoord = { 0.0f, 0.0f };
+	vertices[3].texCoord = { 1.0f, 0.0f };
 
 	return vertices;
 }

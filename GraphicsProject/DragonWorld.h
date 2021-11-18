@@ -5,13 +5,12 @@
 #include "OBJMesh.h"
 #include "Quad.h"
 #include "Texture.h"
+#include "EarthTexture.h"
 
 class DragonWorld : public World
 {
 public:
 	void onStart() override;
-	void onUpdate(float deltaTime) override;
-	void onDraw() override;
 	void onEnd() override;
 
 private:
@@ -20,6 +19,6 @@ private:
 	Light* m_light1 = nullptr;
 	OBJMesh* m_dragon = nullptr;
 	Quad* m_quad = nullptr;
-
+	EarthTexture* m_earthTexture = nullptr;
 };
 

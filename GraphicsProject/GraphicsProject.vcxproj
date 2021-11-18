@@ -159,7 +159,6 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="OBJMesh.cpp" />
     <ClCompile Include="PlayerCamera.cpp" />
-    <ClCompile Include="TestWorld.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Quad.cpp" />
@@ -177,7 +176,6 @@
     <ClInclude Include="Material.h" />
     <ClInclude Include="OBJMesh.h" />
     <ClInclude Include="PlayerCamera.h" />
-    <ClInclude Include="TestWorld.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Shader.h" />

@@ -6,8 +6,8 @@
 class Light : public Entity
 {
 public:
-	Light() {}
-	Light(glm::vec3 direction, glm::vec4 ambient, glm::vec4 diffuse, glm::vec4 specular, int count);
+	Light() : m_index(0) {}
+	Light(glm::vec3 direction, glm::vec4 ambient, glm::vec4 diffuse, glm::vec4 specular);
 	~Light() {}
 
 	void onDraw() override;
@@ -15,29 +15,25 @@ public:
 	// Light Direction
 	glm::vec3 getDirection();
 	void setDirection(glm::vec3 direction);
-
 	// Ambient Color
-	glm::vec4 getAmbient(int count);
-	void setAmbient(glm::vec4 ambient, int count);
+	glm::vec3 getAmbient() { return m_ambient; }
+	void setAmbient(glm::vec4 ambient) { m_ambient = ambient; }
 	// Diffuse Color
-	glm::vec4 getDiffuse(int count);
-	void setDiffuse(glm::vec4 diffuse, int count);
+	glm::vec4 getDiffuse() { return m_diffuse; }
+	void setDiffuse(glm::vec4 diffuse) { m_diffuse = diffuse; }
 	// Specular Color
-	glm::vec4 getSpecular(int count);
-	void setSpecular(glm::vec4 specular, int count);
+	glm::vec4 getSpecular() { return m_specular; }
+	void setSpecular(glm::vec4 specular) { m_specular = specular; }
 
-	// Count
-	int getCount() { return m_count; }
+	// Returns the current index
+	int getIndex() { return m_index; }
+	// Sets the current index
+	void setIndex(int index) { m_index = index; }
 
 private:
-	// Light0
+	int m_index;
 	glm::vec4 m_ambient = glm::vec4(0.0f);
 	glm::vec4 m_diffuse = glm::vec4(0.0f);
 	glm::vec4 m_specular = glm::vec4(0.0f);
-	// Light1
-	glm::vec4 m_ambient1 = glm::vec4(0.0f);
-	glm::vec4 m_diffuse1 = glm::vec4(0.0f);
-	glm::vec4 m_specular1 = glm::vec4(0.0f);
-	int m_count = 0;
 };
 

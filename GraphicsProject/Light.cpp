@@ -1,31 +1,29 @@
 #include "Light.h"
 #include "gl_core_4_4.h"
+#include <string>
 
-Light::Light(glm::vec3 direction, glm::vec4 ambient, glm::vec4 diffuse, glm::vec4 specular, int count)
+Light::Light(glm::vec3 direction, glm::vec4 ambient, glm::vec4 diffuse, glm::vec4 specular)
 {
-	if (m_count == 0)
-	{
-		setDirection(direction);
-		m_ambient = ambient;
-		m_diffuse = diffuse;
-		m_specular = specular;
-	}
-	else if (m_count == 1)
-	{
-		setDirection(direction);
-		m_ambient1 = ambient;
-		m_diffuse1 = diffuse;
-		m_specular1 = specular;
-	}
-	else
-	{
-		printf("Count exceeds light limit!\n");
-	}
-	m_count = count;
+	setDirection(direction);
+	m_ambient = ambient;
+	m_diffuse = diffuse;
+	m_specular = specular;
 }
 
 void Light::onDraw()
 {
+	// Checks the range of the array 
+	if (m_index < 0)
+	{
+		printf("Light::setindex less than zero");
+		return;
+	}
+	else if (m_index > 2)
+	{
+		printf("Light::setIndex exceeds maximum of 2");
+		return;
+	}
+
 	int program = -1;
 	glGetIntegerv(GL_CURRENT_PROGRAM, &program);
 
@@ -34,11 +32,22 @@ void Light::onDraw()
 		return;
 	}
 
-	// Light0
-	int lightDirection = glGetUniformLocation(program, "iDirection0");
-	int lightAmbient = glGetUniformLocation(program, "iAmbient0");
-	int lightDiffuse = glGetUniformLocation(program, "iDiffuse0");
-	int lightSpecular = glGetUniformLocation(program, "iSpecular0");
+	int lightDirection = 0;
+	int lightAmbient = 0;
+	int lightDiffuse = 0;
+	int lightSpecular = 0;
+
+	std::string string = ("iDirection" + std::to_string(m_index));
+	lightDirection = glGetUniformLocation(program, string.c_str());
+
+	string = ("iAmbient" + std::to_string(m_index));
+	lightAmbient = glGetUniformLocation(program, string.c_str());
+
+	string = ("iDiffuse" + std::to_string(m_index));
+	lightDiffuse = glGetUniformLocation(program, string.c_str());
+
+	string = ("iSpecular" + std::to_string(m_index));
+	lightSpecular = glGetUniformLocation(program, string.c_str());
 
 	if (lightDirection >= 0) {
 		glm::vec3 direction = getDirection();
@@ -53,26 +62,6 @@ void Light::onDraw()
 	if (lightSpecular >= 0) {
 		glUniform3f(lightSpecular, m_specular.x, m_specular.y, m_specular.z);
 	}
-
-	// Light1
-	int lightDirection1 = glGetUniformLocation(program, "iDirection1");
-	int lightAmbient1 = glGetUniformLocation(program, "iAmbient1");
-	int lightDiffuse1 = glGetUniformLocation(program, "iDiffuse1");
-	int lightSpecular1 = glGetUniformLocation(program, "iSpecular1");
-
-	if (lightDirection1 >= 0) {
-		glm::vec3 direction = getDirection();
-		glUniform3f(lightDirection1, direction.x, direction.y, direction.z);
-	}
-	if (lightAmbient1 >= 0) {
-		glUniform3f(lightAmbient1, m_ambient1.x, m_ambient1.y, m_ambient1.z);
-	}
-	if (lightDiffuse1 >= 0) {
-		glUniform3f(lightDiffuse1, m_diffuse1.x, m_diffuse1.y, m_diffuse1.z);
-	}
-	if (lightSpecular1 >= 0) {
-		glUniform3f(lightSpecular1, m_specular1.x, m_specular1.y, m_specular1.z);
-	}
 }
 
 glm::vec3 Light::getDirection()
@@ -85,74 +74,3 @@ void Light::setDirection(glm::vec3 direction)
 	getTransform()->setForward(direction);
 }
 
-glm::vec4 Light::getAmbient(int count)
-{
-	if (count == 0)
-	{
-		return m_ambient;
-	}
-	else if (count == 1)
-	{
-		return m_ambient1;
-	}
-}
-
-void Light::setAmbient(glm::vec4 ambient, int count)
-{
-	if (count == 0)
-	{
-		m_ambient = ambient;
-	}
-	else if (count == 1)
-	{
-		m_ambient1 = ambient;
-	}
-}
-
-glm::vec4 Light::getDiffuse(int count)
-{
-	if (count == 0)
-	{
-		return m_diffuse;
-	}
-	else if (count == 1)
-	{
-		return m_diffuse1;
-	}
-}
-
-void Light::setDiffuse(glm::vec4 diffuse, int count)
-{
-	if (count == 0)
-	{
-		m_diffuse = diffuse;
-	}
-	else if (count == 1)
-	{
-		m_diffuse1 = diffuse;
-	}
-}
-
-glm::vec4 Light::getSpecular(int count)
-{
-	if (count == 0)
-	{
-		return m_specular;
-	}
-	else if (count == 1)
-	{
-		return m_specular1;
-	}
-}
-
-void Light::setSpecular(glm::vec4 specular, int count)
-{
-	if (count == 0)
-	{
-		m_specular = specular;
-	}
-	else if (count == 1)
-	{
-		m_specular1 = specular;
-	}
-}

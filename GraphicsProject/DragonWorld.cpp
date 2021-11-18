@@ -43,11 +43,18 @@ void DragonWorld::onStart()
 	add(m_dragon);
 }
 
+void DragonWorld::onUpdate(float deltaTime)
+{
+}
+
+void DragonWorld::onDraw()
+{
+}
+
 void DragonWorld::onEnd()
 {
 	destroy(m_camera);
 	destroy(m_light0);
 	destroy(m_light1);
 	destroy(m_dragon);
-	destroy(m_cube);
 }

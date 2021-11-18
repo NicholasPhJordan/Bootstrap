@@ -10,6 +10,7 @@ uniform mat4 projectionViewMatrix;
 uniform mat4 modelMatrix;
 
 out vec4 fPosition;
+out vec2 fTexCoord;
 out vec4 fNormal;
 out vec4 fColor;
 
@@ -17,5 +18,6 @@ void main() {
 	fPosition = vPosition;
 	fNormal = modelMatrix * vNormal;
 	fColor = vColor;
+	fTexCoord = vTexCoord;
 	gl_Position = projectionViewMatrix * modelMatrix * vPosition;
 }

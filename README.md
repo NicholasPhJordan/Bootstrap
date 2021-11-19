@@ -9,6 +9,8 @@ Either [click here](https://github.com/NicholasPhJordan/Bootstrap/releases/tag/v
 
 ### Controls
 
+LMB - Hold and drag to move around the camera
+
 W - Forward
 
 A - Left
